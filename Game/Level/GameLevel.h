@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Level/Level.h"
+#include "Utils/Timer.h"
+#include "Math/Vector2.h"
+
 /*
    게임 레벨의 책임.
    - 적 생성: 약간의 랜덤성을 가미해서 일정 시간마다 적 생성.
@@ -22,5 +25,19 @@ public:
 	virtual void Render() override;
 
 private:
+	void SpawnEnemies(float deltaTime);
+	void ProcessCollisionPlayerBulletAndEnemy();
+	void ProcessCollisionPlayerAndEnemyBullet();
+private:
+	// 적 생성 시 시간 계산을 위한 타이머.
+	Timer enemySpawnTimer;
 
+	// 점수 변수.
+	int score = 0;
+
+	// 플레이어의 죽음 처리를 위한 변수.
+	bool isPlayerDead = false;
+	
+	// 플레이어 죽은 위치.
+	Vector2 playerDeadPosition;
 };

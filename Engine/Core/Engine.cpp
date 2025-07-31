@@ -43,6 +43,9 @@ Engine::Engine()
 
 	// 엔진 설정 로드.
 	LoadEngineSettings();
+
+	// 랜던 종자값(seed) 설정.
+	srand(static_cast<unsigned int>(time(nullptr)));
 }
 
 Engine::~Engine()
@@ -99,7 +102,7 @@ void Engine::Run()
 		if (deltaTime >= oneFrameTime)
 		{
 			BeginPlay();
-			Tick(deltaTime);
+		Tick(deltaTime);
 			Render();
 
 			// 제목에 FPS 출력.
